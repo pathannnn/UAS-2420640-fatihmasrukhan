@@ -1,34 +1,21 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <!-- Header section -->
-    <q-header elevated class="bg-primary text-white">
+  <q-layout view="hHh Lpr fFf">
+    <q-header elevated class="bg-dark q-pa-md">
+      <!-- Bagian kiri header -->
       <q-toolbar>
-        <!-- Title in the toolbar -->
-        <q-toolbar-title class="font-title">
-          Fatih Masrukhan
-        </q-toolbar-title>
-
-        <!-- Spacer -->
-        <q-space />
-
-        <!-- Button group for navigation -->
-        <q-btn-group flat>
-          <q-btn
-            v-for="(title, index) in titles"
-            :key="index"
-            :label="title.text"
-            :href="title.link"
-            target="_blank"
-            class="font-nav-btn"
-          />
-        </q-btn-group>
+        <q-toolbar-title class="text-white">FATIH MASRUKHAN</q-toolbar-title>
+        
+        <!-- Bagian kanan header -->
+        <div class="flex-grow-1 text-right">
+          <q-btn v-for="item in tugasItems" :key="item.to" flat dense class="text-white q-ml-sm" :to="item.to" exact>
+            Tugas {{ item.id }}
+          </q-btn>
+        </div>
       </q-toolbar>
     </q-header>
 
     <q-page-container>
-      <q-page>
-        <!-- Your page content goes here -->
-      </q-page>
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>
@@ -37,63 +24,53 @@
 export default {
   data() {
     return {
-      titles: [
-        { text: 'judul 1', link: 'https://fatih-project-cv.netlify.app/' },
-        { text: 'judul 2', link: 'https://fatih-project-tugas2.netlify.app/' },
-        { text: 'judul 3', link: 'https://tugas3-pbk-2420640.netlify.app/' },
-        { text: 'judul 4', link: 'https://github.com/pathannnn/tugas4-pbk-2420640' },
-        { text: 'judul 5', link: 'https://tugas5-2420640-fatihmasrukhan.netlify.app/' },
-        { text: 'judul 6', link: 'https://tugas6-2420640-fatihmasrukhan.netlify.app/' },
-        { text: 'judul 7', link: 'https://tugas7-pbk-2420640.netlify.app' }
-      ]
+      tugasItems: [
+        { id: 1, to: "/tugas1" },
+        { id: 2, to: "/tugas2" },
+        { id: 3, to: "/tugas3" },
+        { id: 4, to: "/tugas4" },
+        { id: 5, to: "/tugas5" },
+        { id: 6, to: "/tugas6" },
+        { id: 7, to: "/tugas7" },
+      ],
     };
-  }
-}
+  },
+};
 </script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-/* Global styles */
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
+<style scoped>
+header{
+  padding-left: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-right: 1rem;
 }
-
-/* Header styles */
-.bg-primary {
-  background-color: #ffd700; /* Gold background color */
+.bg-dark {
+  background-color: #333;
 }
 
 .text-white {
-  color: #ffffff; /* White text color */
+  color: white;
 }
 
-.font-title {
-  font-size: 1.5rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.q-toolbar-title {
+  font-size: 10rem;
+  font-weight: bold;
 }
 
-.font-nav-btn {
-  font-size: 0.875rem; /* 14px */
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #ffffff; /* White text color */
+.q-btn {
+  margin-left: 10px;
 }
 
-/* Button group styles */
-.q-btn-group.flat {
-  margin-left: 20px; /* Space between buttons */
+.q-ml-sm {
+  margin-left: 15px;
 }
 
-/* Page container styles (if needed) */
-.q-page-container {
-  padding: 20px; /* Padding around content */
+.flex-grow-1 {
+  flex-grow: 1;
 }
 
-/* Optional: Add more styles as per your design */
+.text-right {
+  text-align: right;
+}
 </style>
-
